@@ -53,8 +53,7 @@ function result = WriteOpenIGTLinkStatusMessage(deviceName, msgStatus, protocolV
     msg.deviceName = uint8(padString(deviceName, 20));
     % Status content
     code = convertToUint8Vector(msgStatus.code,'uint16');
-    disp(code)
-    subCode = convertToUint8Vector(msgStatus.subCode,'uint16');
+    subCode = convertToUint8Vector(msgStatus.subCode,'uint64');
     errorName = [uint8(msgStatus.errorName)];
     message = [uint8(msgStatus.message)];
     msg.content = [code, subCode, errorName, message];

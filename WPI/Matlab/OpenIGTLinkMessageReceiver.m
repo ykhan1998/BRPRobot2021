@@ -9,7 +9,7 @@ function receiver = OpenIGTLinkMessageReceiver(sock, onRxStatusMsg, onRxStringMs
     onRxPointMessage = onRxPointMsg;
     onRxImageMessage = onRxImageMsg;
     socket = sock;
-    timeout = 500;
+    timeout = 500000;
     receiver.readMessage = @readMessage;
     receiver.readCommandMessage = @readCommandMessage;
 end

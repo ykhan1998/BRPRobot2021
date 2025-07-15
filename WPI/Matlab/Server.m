@@ -7,7 +7,7 @@ classdef Server < handle
     
     properties (Access = private)
         host = '127.0.0.1'
-        port = 18936
+        port = 18928
         socket
         status_buffer
         string_buffer
@@ -21,7 +21,7 @@ classdef Server < handle
         sender
         receiver
         robot
-        validCommands = ["STARTUP", "CALIBRATION", "PLANNING", "TARGETING",...
+        validCommands = ["START_UP", "CALIBRATION", "PLANNING", "TARGETING",...
                          "IDLE", "MOVE_TO_TARGET", "STOP"];
     end
     

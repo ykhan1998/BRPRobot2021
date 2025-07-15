@@ -962,7 +962,7 @@ class ProstateBRPInterfaceWidget(ScriptedLoadableModuleWidget):
     self.robotStatusCodeTextbox.setText(self.status_codes[statusMessageCode])
     infoMsg =  "Received STATUS from Robot: ( " + statusMessageStatusString + ", " + self.status_codes[statusMessageCode] + " )"
     self.appendReceivedMessageToCommandLog(infoMsg)
-    print(statusMessageStatusString, statusMessageError, statusMessageCode, calledNode.GetSubCode())
+    print(calledNode.GetCode(), calledNode.GetSubCode())
     cmdNodes = slicer.util.getNodes("CMD_*")
     if statusMessageStatusString == "CURRENT_STATUS":
       print(f'CURRENT_STATUS: {self.status_codes[statusMessageCode]}')
