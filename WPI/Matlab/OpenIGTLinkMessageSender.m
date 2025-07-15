@@ -55,20 +55,21 @@ function result = WriteOpenIGTLinkStatusMessage(deviceName, msgStatus, protocolV
     code = convertToUint8Vector(msgStatus.code,'uint16');
     subCode = convertToUint8Vector(msgStatus.subCode,'uint64');
     errorName = [uint8(msgStatus.errorName)];
+    errorName(length(errorName)+1:20) = 0;
     message = [uint8(msgStatus.message)];
     msg.content = [code, subCode, errorName, message];
     % Status medatada (might be optional)
-    numberKeys = convertToUint8Vector(2, 'uint16');
-    key1 = uint8('MRMLNodeName');
-    value1 = uint8('STATUS');
-    keySize1 = convertToUint8Vector(length(key1), 'uint16');
-    valueEncod1 = convertToUint8Vector(3, 'uint16');
-    valueSize1 = convertToUint8Vector(length(value1), 'uint32');
-    metadataHeader = [numberKeys, keySize1, valueEncod1, valueSize1];
-    metadataValues = [key1, value1];
-    msg.metadataHeaderSizeInt = length(metadataHeader);
-    msg.metadataSizeInt = length(metadataValues);
-    msg.metadata = [metadataHeader, metadataValues];
+    % numberKeys = convertToUint8Vector(2, 'uint16');
+    % key1 = uint8('MRMLNodeName');
+    % value1 = uint8('STATUS');
+    % keySize1 = convertToUint8Vector(length(key1), 'uint16');
+    % valueEncod1 = convertToUint8Vector(3, 'uint16');
+    % valueSize1 = convertToUint8Vector(length(value1), 'uint32');
+    % metadataHeader = [numberKeys, keySize1, valueEncod1, valueSize1];
+    % metadataValues = [key1, value1];
+    % msg.metadataHeaderSizeInt = length(metadataHeader);
+    % msg.metadataSizeInt = length(metadataValues);
+    % msg.metadata = [metadataHeader, metadataValues];
     result = WriteOpenIGTLinkMessage(msg, protocolVersion);
 end
 

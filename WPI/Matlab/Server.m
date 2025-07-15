@@ -7,7 +7,7 @@ classdef Server < handle
     
     properties (Access = private)
         host = '127.0.0.1'
-        port = 18928
+        port = 18936
         socket
         status_buffer
         string_buffer

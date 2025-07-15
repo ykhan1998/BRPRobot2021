@@ -37,7 +37,7 @@ while true
                 start_up_count = start_up_count + 1;
                 pause(0.2);
                 robot_not_ready = server.robot.is_startup();
-                robot_pose = get_robot_current_pose();
+                %robot_pose = get_robot_current_pose();
 
                 %if it's started or not, wait for it to start up
                 if robot_not_ready
@@ -51,7 +51,7 @@ while true
                     command_recieved = false;
                     server.robot.set_robot_mode('idle');
                 end
-                server.sender.WriteOpenIGTLinkStatusMessage(char(name), status);
+                server.sender.WriteOpenIGTLinkStatusMessage(char("CMD_"+id(2)), status);
                 %should not send any transform, here is the reason, if it's
                 %not start up, it won't answer robot_pose command. If it
                 %starts up, the loop would exit to idle, which would have
