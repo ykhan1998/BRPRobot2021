@@ -331,8 +331,8 @@ while true
             end
 
         case "IDLE"
-            disp('Idle');
             if ~robot_not_ready
+                disp('Idle');
                 while idle_flag
                     [name, type, data] = server.receiver.readMessage();
                     if strcmpi(type, 'STRING')
@@ -348,11 +348,13 @@ while true
                             state = data;
                         else
                             error_message = "Unknown Command, Please check.";
-                            server.sender.WriteOpenIGTLinkStringMessage(char(name), char(error_message));
+                            disp(error_message);
+                            %server.sender.WriteOpenIGTLinkStringMessage(char(name), char(error_message));
                         end
                     else
                         error_message = "Wrong command at this time.";
-                        server.sender.WriteOpenIGTLinkStringMessage(char(name), char(error_message));
+                        disp(error_message);
+                        %server.sender.WriteOpenIGTLinkStringMessage(char(name), char(error_message));
                     end
                 end
             else
