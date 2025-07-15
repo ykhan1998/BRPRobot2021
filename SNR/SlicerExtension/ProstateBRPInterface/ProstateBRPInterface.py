@@ -962,7 +962,7 @@ class ProstateBRPInterfaceWidget(ScriptedLoadableModuleWidget):
     self.robotStatusCodeTextbox.setText(self.status_codes[statusMessageCode])
     infoMsg =  "Received STATUS from Robot: ( " + statusMessageStatusString + ", " + self.status_codes[statusMessageCode] + " )"
     self.appendReceivedMessageToCommandLog(infoMsg)
-
+    print(statusMessageStatusString, statusMessageError, statusMessageCode, calledNode.GetSubCode())
     cmdNodes = slicer.util.getNodes("CMD_*")
     if statusMessageStatusString == "CURRENT_STATUS":
       print(f'CURRENT_STATUS: {self.status_codes[statusMessageCode]}')
@@ -1131,7 +1131,7 @@ class ProstateBRPInterfaceWidget(ScriptedLoadableModuleWidget):
     # Initialize the IGTLink Slicer-side server component
     self.openIGTNode = slicer.vtkMRMLIGTLConnectorNode()
     slicer.mrmlScene.AddNode(self.openIGTNode)
-    self.openIGTNode.SetTypeClient(snrHostname, int(snrPort))
+    self.openIGTNode.SetTypeServer(int(snrPort)) #snrHostname,
     self.openIGTNode.Start()
 
     if self.firstServer:
